@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.rememberindia.shoppingportal">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:allowBackup,icon,theme,label">
+        <activity android:name=".Payment_Process.R_Pay_Activity"></activity>
+        <activity android:name=".Payment_Process.StartPayment_Activity" />
+        <activity android:name=".Utility.My_Profile_Activity" />
+        <activity android:name=".Activity.Share_post_Activity.Upload_Video_Activity" />
+        <activity android:name=".Activity.Share_post_Activity.Upload_Image_Activity" />
+        <activity android:name=".Activity.Shared_Post_Activity" />
+        <activity android:name=".Activity.Past_Order_Product_Details_Activity" />
+        <activity android:name=".Activity.Past_Order_Header_Data_Activity" />
+        <activity android:name=".Activity.Product_List_Activity" />
+        <activity
+            android:name=".Activity.Checkout_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.Image_Details_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.Cart_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.Product_Details_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.Login_Activity"
+            android:theme="@style/LoginSignUp4Theme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_test_FJCnD5dZwR2y37" />
+    </application>
+
+</manifest>
