@@ -30,10 +30,6 @@ public class R_Pay_Activity extends AppCompatActivity implements PaymentResultLi
 
         SignUp_Update_API_Call();
 
-
-
-
-
     }
 
     public void startPayment(String order_id) {
