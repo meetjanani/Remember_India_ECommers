@@ -76,6 +76,7 @@ public class R_Pay_Activity extends AppCompatActivity implements PaymentResultLi
             options.put("description", "Order ID : " + Common_Class.Order_ID);
             options.put("order_id", order_id); // order_DCDFACMZNVY4lk
             options.put("currency", "INR");
+            
 //            options.put("email", "test@razorpay.com");
 //            options.put("contact", "9876543210");
 
