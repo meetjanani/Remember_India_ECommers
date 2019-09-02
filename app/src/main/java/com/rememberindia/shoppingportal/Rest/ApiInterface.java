@@ -80,8 +80,8 @@ public interface ApiInterface {
                                                     @Field("Qty") String Qty,
                                                     @Field("Product_Price") String Product_Price,
                                                     @Field("Product_Total") String Product_Total,
-                                                    @Field("Order_Total") String Order_Total,
                                                     @Field("User_Mobile_No") String User_Mobile_No,
+                                                    @Field("Address_1") String Address_1,
                                                     @Field("User_Name") String User_Name,
                                                     @Field("User_ID") String User_ID,
                                                     @Field("URL_1") String URL_1);
