@@ -98,7 +98,8 @@ public class Login_Fragment extends Fragment implements View.OnClickListener{
                             response.body().getData().get(0).getPassword() , response.body().getData().get(0).getDegree() , response.body().getData().get(0).getRegistrationNo() ,
                             response.body().getData().get(0).getMobileNO() ,response.body().getData().get(0).getEmailID() , response.body().getData().get(0).getCity() ,
                             response.body().getData().get(0).getState() , response.body().getData().get(0).getAddress1());
-                    Toast.makeText(referenceActivity, response.body().getMessage() + "", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(referenceActivity, response.body().getMessage() + "", Toast.LENGTH_SHORT).show();
+                    referenceActivity.finish();
                     Intent in = new Intent(referenceActivity , MainActivity.class);
                     referenceActivity.startActivity(in);
                 } else {

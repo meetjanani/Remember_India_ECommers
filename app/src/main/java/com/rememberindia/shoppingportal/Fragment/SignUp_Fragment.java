@@ -86,8 +86,10 @@ public class SignUp_Fragment extends Fragment implements View.OnClickListener{
 
                 Toast.makeText(referenceActivity, response.body().getMessage() + "", Toast.LENGTH_SHORT).show();
                 if (response.body().getStatus() == 1) {
-
-                    Toast.makeText(referenceActivity, response.body().getMessage() + "", Toast.LENGTH_SHORT).show();
+                    referenceActivity.finish();
+                    Intent in = new Intent(referenceActivity , MainActivity.class);
+                    startActivity(in);
+                    //Toast.makeText(referenceActivity, response.body().getMessage() + "", Toast.LENGTH_SHORT).show();
 
                 } else {
                 }

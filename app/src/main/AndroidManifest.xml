@@ -20,7 +20,6 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup,icon,theme,label">
         <activity android:name=".Payment_Process.R_Pay_Activity"></activity>
-        <activity android:name=".Payment_Process.StartPayment_Activity" />
         <activity android:name=".Utility.My_Profile_Activity" />
         <activity android:name=".Activity.Share_post_Activity.Upload_Video_Activity" />
         <activity android:name=".Activity.Share_post_Activity.Upload_Image_Activity" />

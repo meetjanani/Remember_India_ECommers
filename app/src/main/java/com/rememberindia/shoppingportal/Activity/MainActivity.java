@@ -1,17 +1,9 @@
 package com.rememberindia.shoppingportal.Activity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -22,31 +14,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.rememberindia.shoppingportal.Activity.Share_post_Activity.Upload_Image_Activity;
 import com.rememberindia.shoppingportal.Activity.Share_post_Activity.Upload_Video_Activity;
-import com.rememberindia.shoppingportal.Adapter.Product_List_Display_Adapter;
-import com.rememberindia.shoppingportal.Bean.DB_Helper_Offline.Order_Summery_Db_Helper;
-import com.rememberindia.shoppingportal.Bean.Product_Details_Bean;
-import com.rememberindia.shoppingportal.Bean.Product_List_Bean;
 import com.rememberindia.shoppingportal.Payment_Process.R_Pay_Activity;
-import com.rememberindia.shoppingportal.Payment_Process.StartPayment_Activity;
 import com.rememberindia.shoppingportal.R;
-import com.rememberindia.shoppingportal.Rest.ApiClient;
-import com.rememberindia.shoppingportal.Rest.ApiInterface;
 import com.rememberindia.shoppingportal.Utility.My_Profile_Activity;
-import com.rememberindia.shoppingportal.Utility.Utils;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import com.rememberindia.shoppingportal.Utility.Session_Manager;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -171,7 +146,15 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_my_profile) {
             Intent in = new Intent(MainActivity.this , My_Profile_Activity.class);
             startActivity(in);
-        }else if (id == R.id.nav_share) {
+        }
+        else if (id == R.id.nav_logout) {
+            Session_Manager.Save_Login_Data(this , "False" , "","","","",
+                                    "","","","","","");
+            finish();
+            Intent in = new Intent(MainActivity.this , Login_Activity.class);
+            startActivity(in);
+        }
+        else if (id == R.id.nav_share) {
             Intent in = new Intent(MainActivity.this , R_Pay_Activity.class);
             startActivity(in);
 
