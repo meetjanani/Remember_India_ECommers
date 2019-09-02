@@ -19,6 +19,7 @@ import retrofit2.http.Part;
 
 public interface ApiInterface {
 
+    // Sign Up
     @FormUrlEncoded
     @POST("Master.php")
     Call<Common_Insert_Response_Bean> SignUp_New_User(@Field("methodname") String methodname,
