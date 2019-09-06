@@ -52,6 +52,13 @@ public class Session_Manager {
         editor.commit();
     }
 
+    public static void setIs_Login(Context ctx , String islogin) {
+        SharedPreferences pref  = ctx.getSharedPreferences(MyPREFERENCES, 0);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString(Is_Login, islogin); // Storing boolean - true/false
+    }
+
+
     public static String getIs_Login(Context ctx) {
         SharedPreferences pref  = ctx.getSharedPreferences(MyPREFERENCES, 0);
         return pref.getString(Is_Login, null); // getting String

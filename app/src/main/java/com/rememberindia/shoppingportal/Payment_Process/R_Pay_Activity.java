@@ -1,8 +1,8 @@
 package com.rememberindia.shoppingportal.Payment_Process;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.razorpay.Checkout;
@@ -118,6 +118,7 @@ public class R_Pay_Activity extends AppCompatActivity implements PaymentResultLi
 
                // Toast.makeText(R_Pay_Activity.this, response.body().getId() + "", Toast.LENGTH_SHORT).show();
                 startPayment( response.body().getId());
+                Common_Class.Payment_ID = response.body().getId();
 
             }
 

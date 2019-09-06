@@ -4,15 +4,13 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.SQLException;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -27,10 +25,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rememberindia.shoppingportal.Adapter.Cart_Adapter;
-import com.rememberindia.shoppingportal.Bean.DB_Helper_Offline.DBHelper_Offline;
 import com.rememberindia.shoppingportal.Bean.DB_Helper_Offline.Order_Summery_Db_Helper;
 import com.rememberindia.shoppingportal.Bean.DB_Helper_Offline.Order_Summery_Ofline_Bean;
 import com.rememberindia.shoppingportal.R;
+import com.rememberindia.shoppingportal.Utility.Session_Manager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,11 +83,18 @@ public class Cart_Activity extends AppCompatActivity {
             public void onClick(View view) {
                 dbhelper.close();
                 //                      // ***************************
-                Intent intent = new Intent(Cart_Activity.this, Checkout_Activity.class);
-                intent.putExtra("tax", str_tax);
-                intent.putExtra("currency_code", str_currency_code);
-                startActivity(intent);
-                Toast.makeText(Cart_Activity.this, "CheckOur Activity Oopen", Toast.LENGTH_SHORT).show();
+
+                if (Session_Manager.getIs_Login(Cart_Activity.this).equals("True"))
+                {
+                    Intent intent = new Intent(Cart_Activity.this, Checkout_Activity.class);
+                    intent.putExtra("tax", str_tax);
+                    intent.putExtra("currency_code", str_currency_code);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Toast.makeText(Cart_Activity.this, "Please Login Befor Placing Order With US", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         btn_continue = findViewById(R.id.btn_continue);
