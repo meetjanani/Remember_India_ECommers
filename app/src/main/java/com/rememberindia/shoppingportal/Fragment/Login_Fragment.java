@@ -11,10 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.rememberindia.shoppingportal.Activity.Login_Activity;
 import com.rememberindia.shoppingportal.Activity.MainActivity;
-import com.rememberindia.shoppingportal.Activity.Product_List_Activity;
-import com.rememberindia.shoppingportal.Bean.Common_Insert_Response_Bean;
 import com.rememberindia.shoppingportal.Bean.Login_User_Bean.Login_User_List_Bean;
 import com.rememberindia.shoppingportal.R;
 import com.rememberindia.shoppingportal.Rest.ApiClient;
@@ -29,7 +26,7 @@ public class Login_Fragment extends Fragment implements View.OnClickListener{
 
     Activity referenceActivity;
     View parentHolder;
-    Button Btn_SignIn;
+    Button Btn_SignIn , Btn_Sign_In_As_Guest;
     EditText Et_Mobile_Email , ET_Password;
 
     @Override
@@ -43,8 +40,10 @@ public class Login_Fragment extends Fragment implements View.OnClickListener{
         Et_Mobile_Email = (EditText)parentHolder.findViewById(R.id.Et_Mobile_Email);
         ET_Password = (EditText)parentHolder.findViewById(R.id.ET_Password);
         Btn_SignIn = (Button)parentHolder.findViewById(R.id.Btn_SignIn);
+        Btn_Sign_In_As_Guest = (Button)parentHolder.findViewById(R.id.btn_Sign_In_Guest);
 
         Btn_SignIn.setOnClickListener(this);
+        Btn_Sign_In_As_Guest.setOnClickListener(this);
 
         try
         {
@@ -72,6 +71,10 @@ public class Login_Fragment extends Fragment implements View.OnClickListener{
                 {
                     SignIn_API_Call(Et_Mobile_Email.getText().toString() , ET_Password.getText().toString());
                 }
+            case R.id.btn_Sign_In_Guest:
+                Session_Manager.setIs_Login(getActivity() , "False");
+                Intent in = new Intent(referenceActivity , MainActivity.class);
+                referenceActivity.startActivity(in);
 
                 break;
         }
