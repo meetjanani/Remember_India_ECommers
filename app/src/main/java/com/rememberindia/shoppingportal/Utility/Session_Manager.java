@@ -56,6 +56,7 @@ public class Session_Manager {
         SharedPreferences pref  = ctx.getSharedPreferences(MyPREFERENCES, 0);
         SharedPreferences.Editor editor = pref.edit();
         editor.putString(Is_Login, islogin); // Storing boolean - true/false
+        editor.commit();
     }
 
 

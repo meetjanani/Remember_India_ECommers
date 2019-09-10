@@ -84,17 +84,27 @@ public class Cart_Activity extends AppCompatActivity {
                 dbhelper.close();
                 //                      // ***************************
 
-                if (Session_Manager.getIs_Login(Cart_Activity.this).equals("True"))
+                try
                 {
-                    Intent intent = new Intent(Cart_Activity.this, Checkout_Activity.class);
-                    intent.putExtra("tax", str_tax);
-                    intent.putExtra("currency_code", str_currency_code);
-                    startActivity(intent);
+//                    String ss = null;
+//                    ss = Session_Manager.getIs_Login(Cart_Activity.this);
+                    if (Session_Manager.getIs_Login(Cart_Activity.this).equals("True"))
+                    {
+                        Intent intent = new Intent(Cart_Activity.this, Checkout_Activity.class);
+                        intent.putExtra("tax", str_tax);
+                        intent.putExtra("currency_code", str_currency_code);
+                        startActivity(intent);
+                    }
+                    else
+                    {
+                        Toast.makeText(Cart_Activity.this, "Please Login Befor Placing Order With US", Toast.LENGTH_SHORT).show();
+                    }
                 }
-                else
+                catch (Exception e)
                 {
-                    Toast.makeText(Cart_Activity.this, "Please Login Befor Placing Order With US", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Cart_Activity.this, e.getMessage() + "", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
         btn_continue = findViewById(R.id.btn_continue);
