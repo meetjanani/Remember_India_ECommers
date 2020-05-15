@@ -50,5 +50,6 @@ dependencies {
     implementation files('picasso-2.5.2.jar')
     implementation 'com.klinkerapps:simple_videoview:1.2.4'
     implementation 'com.razorpay:checkout:1.5.12'
+    // implementation 'com.google.android.exoplayer:exoplayer:2.10.4'
 
 }

@@ -49,7 +49,7 @@ public class Checkout_Activity extends AppCompatActivity implements PaymentResul
 
    // RequestQueue requestQueue;
     Button btn_submit_order;
-    EditText edt_name, edt_email, edt_phone, edt_address, edt_shipping, edt_order_list, edt_order_total, edt_comment;
+    EditText edt_name, edt_email, edt_phone, edt_address,  edt_order_list, edt_order_total, edt_comment;
     String str_name, str_email, str_phone, str_address, str_shipping, str_order_list, str_order_total, str_comment;
     String data_order_list = "";
     double str_tax;
@@ -97,7 +97,6 @@ public class Checkout_Activity extends AppCompatActivity implements PaymentResul
         edt_email = findViewById(R.id.edt_email);
         edt_phone = findViewById(R.id.edt_phone);
         edt_address = findViewById(R.id.edt_address);
-        edt_shipping = findViewById(R.id.edt_shipping);
         edt_order_list = findViewById(R.id.edt_order_list);
         edt_order_total = findViewById(R.id.edt_order_total);
         edt_comment = findViewById(R.id.edt_comment);
@@ -204,7 +203,6 @@ public class Checkout_Activity extends AppCompatActivity implements PaymentResul
         str_email = edt_email.getText().toString();
         str_phone = edt_phone.getText().toString();
         str_address = edt_address.getText().toString();
-        str_shipping = edt_shipping.getText().toString();
         str_order_list = edt_order_list.getText().toString();
         str_order_total = edt_order_total.getText().toString();
         str_comment = edt_comment.getText().toString();
@@ -349,6 +347,7 @@ public class Checkout_Activity extends AppCompatActivity implements PaymentResul
 //            edt_order_total.setText(_Total_price + " " + str_currency_code);
 //
 //        } else {
+        Common_Class.Order_Amount = (Order_price * 100 ) + "";
             data_order_list += "\n" + getResources().getString(R.string.txt_order) + " " + Order_price + " INR"  +
                     "\n" + getResources().getString(R.string.txt_tax) + " " + str_tax + " % : " + tax + " INR"  +
                     "\n" + getResources().getString(R.string.txt_total) + " " + Total_price + " INR" ;
@@ -448,7 +447,7 @@ public class Checkout_Activity extends AppCompatActivity implements PaymentResul
                     if (response.body().getStatus() > 0) {
                         //Toast.makeText(Checkout_Activity.this, OrderID + "", Toast.LENGTH_SHORT).show();
                         Common_Class.Order_ID = OrderID;
-                        Common_Class.Order_Amount = ( response.body().getStatus() * 100 ) +"";
+                        // Common_Class.Order_Amount = ( response.body().getStatus() * 100 ) +"";
 
                         Toast.makeText(Checkout_Activity.this, response.body().getStatus() + "", Toast.LENGTH_SHORT).show();
 
@@ -472,9 +471,9 @@ public class Checkout_Activity extends AppCompatActivity implements PaymentResul
             });
         }
 
-        Common_Class.Order_ID = null;
 
-        SignUp_Update_API_Call();
+
+        razorPayGenerateOrder();
 
         progress.dismiss();
         //finish();
@@ -530,14 +529,14 @@ public class Checkout_Activity extends AppCompatActivity implements PaymentResul
     }
 
 
-    public void SignUp_Update_API_Call()
+    public void razorPayGenerateOrder()
     {
 
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
 //
         Call<R_Pay_Bean> call = apiService.Create_Order_OF_RazorPay(
-                "Generate_New_OrderID",
+                "Generate_New_OrderID_Test",
                 Common_Class.Order_Amount+ "",
                 Common_Class.Order_ID + "");
         call.enqueue(new Callback<R_Pay_Bean>() {
@@ -548,6 +547,7 @@ public class Checkout_Activity extends AppCompatActivity implements PaymentResul
                 // Toast.makeText(R_Pay_Activity.this, response.body().getId() + "", Toast.LENGTH_SHORT).show();
                 startPayment( response.body().getId());
                 Common_Class.Payment_ID = response.body().getId();
+
 
             }
 
@@ -619,12 +619,13 @@ public class Checkout_Activity extends AppCompatActivity implements PaymentResul
 
     @Override
     public void onPaymentSuccess(String s) {
+        Common_Class.Order_ID = null;
         Toast.makeText(this, s+ "", Toast.LENGTH_SHORT).show();
         finish();
     }
 
     @Override
     public void onPaymentError(int i, String s) {
-
+        Common_Class.Order_ID = null;
     }
 }

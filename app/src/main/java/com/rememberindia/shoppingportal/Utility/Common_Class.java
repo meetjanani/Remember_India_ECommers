@@ -10,4 +10,9 @@ public class Common_Class {
 
     public  static String Payment_ID ;
     public  static String Order_Amount ;
+
+    public  static String BASE_URL_YOUTUBE_PREFIX =
+            "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/";
+    public  static String BASE_URL_YOUTUBE_SUFIX =
+            "\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
 }

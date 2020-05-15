@@ -1,13 +1,9 @@
 package com.rememberindia.shoppingportal.Fragment;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +12,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.rememberindia.shoppingportal.Activity.MainActivity;
-import com.rememberindia.shoppingportal.Activity.Product_List_Activity;
 import com.rememberindia.shoppingportal.Bean.Common_Insert_Response_Bean;
 import com.rememberindia.shoppingportal.R;
 import com.rememberindia.shoppingportal.Rest.ApiClient;
@@ -42,7 +37,6 @@ public class SignUp_Fragment extends Fragment implements View.OnClickListener{
         parentHolder = inflater.inflate(R.layout.fragment_sign_up_, container, false);
 
         btnCreateAccount = (Button)parentHolder.findViewById(R.id.btnCreateAccount);
-
         ET_Full_Name = (EditText)parentHolder.findViewById(R.id.ET_Full_Name);
         ET_Password = (EditText)parentHolder.findViewById(R.id.ET_Password);
         ET_Confirm_Password = (EditText)parentHolder.findViewById(R.id.ET_Confirm_Password);

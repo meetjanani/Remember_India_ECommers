@@ -1,7 +1,6 @@
 package com.rememberindia.shoppingportal.Activity;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -9,12 +8,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.database.SQLException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.Settings;
@@ -22,8 +21,6 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -31,7 +28,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.PermissionRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ArrayAdapter;
@@ -48,8 +44,6 @@ import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.DexterError;
 import com.karumi.dexter.listener.PermissionRequestErrorListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
-import com.rememberindia.shoppingportal.Adapter.Product_List_Display_Adapter;
-import com.rememberindia.shoppingportal.Bean.DB_Helper_Offline.DBHelper_Offline;
 import com.rememberindia.shoppingportal.Bean.DB_Helper_Offline.Order_Summery_Db_Helper;
 import com.rememberindia.shoppingportal.Bean.DB_Helper_Offline.Order_Summery_Ofline_Bean;
 import com.rememberindia.shoppingportal.Bean.Product_Details_Bean;
@@ -67,7 +61,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -76,7 +69,6 @@ import retrofit2.Response;
 public class Product_Details_Activity extends AppCompatActivity {
 
     public String Product_ID;
-
     long product_id;
     TextView txt_product_name, txt_product_price, txt_product_quantity , Tv_product_description;
     private String product_name, product_image, category_name, product_status, currency_code, product_description;

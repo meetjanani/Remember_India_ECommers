@@ -17,6 +17,9 @@ public class Shared_Post_Details_Bean {
     @SerializedName("URL_1")
     @Expose
     private String uRL1;
+    @SerializedName("URL_2")
+    @Expose
+    private String uRL2;
     @SerializedName("is_active")
     @Expose
     private String isActive;
@@ -54,6 +57,14 @@ public class Shared_Post_Details_Bean {
 
     public void setURL1(String uRL1) {
         this.uRL1 = uRL1;
+    }
+
+    public String getURL2() {
+        return uRL2;
+    }
+
+    public void setURL2(String uRL2) {
+        this.uRL2 = uRL2;
     }
 
     public String getIsActive() {

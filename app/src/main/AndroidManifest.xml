@@ -19,7 +19,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup,icon,theme,label">
-        <activity android:name=".Payment_Process.R_Pay_Activity"></activity>
+        <activity android:name=".Activity.VideoViewActivity"></activity>
+        <activity android:name=".Payment_Process.R_Pay_Activity" />
         <activity android:name=".Utility.My_Profile_Activity" />
         <activity android:name=".Activity.Share_post_Activity.Upload_Video_Activity" />
         <activity android:name=".Activity.Share_post_Activity.Upload_Image_Activity" />
@@ -58,7 +59,7 @@
 
         <meta-data
             android:name="com.razorpay.ApiKey"
-            android:value="rzp_test_FJCnD5dZwR2y37" />
+            android:value="rzp_test_G5j7j1de5hNnmb" />
     </application>
 
 </manifest>

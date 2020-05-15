@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.klinker.android.simple_videoview.SimpleVideoView;
 import com.rememberindia.shoppingportal.Activity.Share_post_Activity.Upload_Video_Activity;
-import com.rememberindia.shoppingportal.Adapter.Shared_Post_Adapter;
+import com.rememberindia.shoppingportal.Adapter.Shared_Post_Adapter_Old;
 import com.rememberindia.shoppingportal.Bean.Shared_Post_Bean.Shared_Post_Details_Bean;
 import com.rememberindia.shoppingportal.Bean.Shared_Post_Bean.Shared_Post_List_Bean;
 import com.rememberindia.shoppingportal.R;
@@ -36,7 +36,7 @@ public class Shared_Post_Activity extends AppCompatActivity {
     //SwipeRefreshLayout SwipeRefresh_Past_Order = null;
     LinearLayout lyt_root;
     List<Shared_Post_Details_Bean> Records;
-    Shared_Post_Adapter adapter;
+    Shared_Post_Adapter_Old adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,9 +95,9 @@ public class Shared_Post_Activity extends AppCompatActivity {
                 if (response.body().getStatus() == 1)
                 {
                     Records = response.body().getData();
-                    adapter = new Shared_Post_Adapter(Shared_Post_Activity.this, Records);
+                    adapter = new Shared_Post_Adapter_Old(Shared_Post_Activity.this, Records);
                     recyclerView.setAdapter(adapter);
-                    recyclerView.setLayoutManager(new LinearLayoutManager((Shared_Post_Activity.this)));
+                    recyclerView.setLayoutManager(new LinearLayoutManager(Shared_Post_Activity.this, LinearLayoutManager.HORIZONTAL, false));
                     //  SwipeRefresh_Past_Order.setRefreshing(false);
                     progress.dismiss();
                 }

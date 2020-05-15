@@ -1,38 +1,56 @@
 package com.rememberindia.shoppingportal.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
-import android.support.v4.view.GravityCompat;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.MenuItem;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.rememberindia.shoppingportal.Activity.Share_post_Activity.Upload_Image_Activity;
 import com.rememberindia.shoppingportal.Activity.Share_post_Activity.Upload_Video_Activity;
+import com.rememberindia.shoppingportal.Adapter.Shared_Post_Adapter_New;
+import com.rememberindia.shoppingportal.Bean.Shared_Post_Bean.Shared_Post_Details_Bean;
+import com.rememberindia.shoppingportal.Bean.Shared_Post_Bean.Shared_Post_List_Bean;
 import com.rememberindia.shoppingportal.Payment_Process.R_Pay_Activity;
 import com.rememberindia.shoppingportal.R;
+import com.rememberindia.shoppingportal.Rest.ApiClient;
+import com.rememberindia.shoppingportal.Rest.ApiInterface;
 import com.rememberindia.shoppingportal.Utility.My_Profile_Activity;
 import com.rememberindia.shoppingportal.Utility.Session_Manager;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-//    private RecyclerView recyclerView;
+    //    private RecyclerView recyclerView;
 //    private List<Product_List_Bean> productList;
 //    private Product_List_Display_Adapter mAdapter;
 //    private SearchView searchView;
 //    SwipeRefreshLayout swipeRefreshLayout = null;
     LinearLayout lyt_root;
-    LinearLayout LL_Media , LL_Shooping_Mall;
+    LinearLayout LL_Past_Order, LL_Shooping_Mall;
+    List<Shared_Post_Details_Bean> Records;
+    //SwipeRefreshLayout SwipeRefresh_Past_Order = null;
+    Shared_Post_Adapter_New adapter;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,14 +68,14 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        LL_Media = (LinearLayout) findViewById(R.id.LL_Media);
-        LL_Shooping_Mall = (LinearLayout)findViewById(R.id.LL_Shooping_Mall);
+        LL_Past_Order = findViewById(R.id.LL_Past_Order);
+        LL_Shooping_Mall = findViewById(R.id.LL_Shooping_Mall);
 
 
-        LL_Media.setOnClickListener(new View.OnClickListener() {
+        LL_Past_Order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(MainActivity.this , Shared_Post_Activity.class);
+                Intent in = new Intent(MainActivity.this, Past_Order_Header_Data_Activity.class);
                 startActivity(in);
             }
         });
@@ -65,7 +83,7 @@ public class MainActivity extends AppCompatActivity
         LL_Shooping_Mall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(MainActivity.this , Product_List_Activity.class);
+                Intent in = new Intent(MainActivity.this, Product_List_Activity.class);
                 startActivity(in);
             }
         });
@@ -78,6 +96,67 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        recyclerView = findViewById(R.id.recycler_view_Shared_Post);
+
+        Product_List_Display_API_Call();
+
+//
+        //recycler_view_Shared_Post
+
+
+
+    }
+
+
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        video_view.release();
+//    }
+
+
+    public void Product_List_Display_API_Call()
+    {
+
+        final ProgressDialog progress = new ProgressDialog(MainActivity.this);
+        progress.setMessage("Loading Data) ");
+        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progress.show();
+
+
+        ApiInterface apiService =
+                ApiClient.getClient().create(ApiInterface.class);
+
+        Call<Shared_Post_List_Bean> call=apiService.Display_Shared_Post("Display_All_Post");
+        call.enqueue(new Callback<Shared_Post_List_Bean>() {
+            @Override
+            public void onResponse(Call<Shared_Post_List_Bean> call, Response<Shared_Post_List_Bean> response) {
+                // Toast.makeText(Past_Order_Header_Data_Activity.this, response.body().getMessage() + "", Toast.LENGTH_SHORT).show();
+                if (response.body().getStatus() == 1)
+                {
+                    Records = response.body().getData();
+                    adapter = new Shared_Post_Adapter_New(MainActivity.this, Records);
+                    recyclerView.setAdapter(adapter);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+                    //  SwipeRefresh_Past_Order.setRefreshing(false);
+                    progress.dismiss();
+                }
+                else
+                {
+                    Toast.makeText(MainActivity.this, response.body().getMessage() + "", Toast.LENGTH_SHORT).show();
+                    progress.dismiss();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<Shared_Post_List_Bean> call, Throwable t) {
+
+            }
+        });
+
     }
 
     @Override
@@ -106,7 +185,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_cart) {
-            Intent in = new Intent(MainActivity.this , Cart_Activity.class);
+            Intent in = new Intent(MainActivity.this, Cart_Activity.class);
             startActivity(in);
             return true;
 
@@ -124,38 +203,32 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             // Handle the camera action
         } else if (id == R.id.nav_shoppingmall) {
-            Intent in = new Intent(MainActivity.this , Product_List_Activity.class);
+            Intent in = new Intent(MainActivity.this, Product_List_Activity.class);
             startActivity(in);
         } else if (id == R.id.nav_cart) {
-            Intent in = new Intent(MainActivity.this , Cart_Activity.class);
+            Intent in = new Intent(MainActivity.this, Cart_Activity.class);
             startActivity(in);
 
         } else if (id == R.id.nav_pastorder) {
-            Intent in = new Intent(MainActivity.this , Past_Order_Header_Data_Activity.class);
+            Intent in = new Intent(MainActivity.this, Past_Order_Header_Data_Activity.class);
             startActivity(in);
-        }
-        else if (id == R.id.nav_post_photo) {
-            Intent in = new Intent(MainActivity.this , Upload_Image_Activity.class);
+        } else if (id == R.id.nav_post_photo) {
+            Intent in = new Intent(MainActivity.this, Upload_Image_Activity.class);
             startActivity(in);
-        }
-
-        else if (id == R.id.nav_post_video) {
-            Intent in = new Intent(MainActivity.this , Upload_Video_Activity.class);
+        } else if (id == R.id.nav_post_video) {
+            Intent in = new Intent(MainActivity.this, Upload_Video_Activity.class);
             startActivity(in);
-        }
-        else if (id == R.id.nav_my_profile) {
-            Intent in = new Intent(MainActivity.this , My_Profile_Activity.class);
+        } else if (id == R.id.nav_my_profile) {
+            Intent in = new Intent(MainActivity.this, My_Profile_Activity.class);
             startActivity(in);
-        }
-        else if (id == R.id.nav_logout) {
-            Session_Manager.Save_Login_Data(this , "False" , "","","","",
-                                    "","","","","","");
+        } else if (id == R.id.nav_logout) {
+            Session_Manager.Save_Login_Data(this, "False", "", "", "", "",
+                    "", "", "", "", "", "");
             finish();
-            Intent in = new Intent(MainActivity.this , Login_Activity.class);
+            Intent in = new Intent(MainActivity.this, Login_Activity.class);
             startActivity(in);
-        }
-        else if (id == R.id.nav_share) {
-            Intent in = new Intent(MainActivity.this , R_Pay_Activity.class);
+        } else if (id == R.id.nav_share) {
+            Intent in = new Intent(MainActivity.this, R_Pay_Activity.class);
             startActivity(in);
 
         } else if (id == R.id.nav_send) {
@@ -182,6 +255,5 @@ public class MainActivity extends AppCompatActivity
 ////        startActivity(intent);
 //
 //    }
-
 
 }

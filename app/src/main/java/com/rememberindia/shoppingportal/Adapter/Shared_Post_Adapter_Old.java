@@ -26,12 +26,12 @@ import com.squareup.picasso.Picasso;
 import java.util.HashMap;
 import java.util.List;
 
-public class Shared_Post_Adapter extends RecyclerView.Adapter<Shared_Post_Adapter.MyViewHolder> {
+public class Shared_Post_Adapter_Old extends RecyclerView.Adapter<Shared_Post_Adapter_Old.MyViewHolder> {
 
     private Context context;
     private List<Shared_Post_Details_Bean> Records;
 
-    public Shared_Post_Adapter(Context context, List<Shared_Post_Details_Bean> productList) {
+    public Shared_Post_Adapter_Old(Context context, List<Shared_Post_Details_Bean> productList) {
         this.context = context;
         //  this.listener = listener;
         this.Records = productList;
@@ -39,7 +39,7 @@ public class Shared_Post_Adapter extends RecyclerView.Adapter<Shared_Post_Adapte
 
     @NonNull
     @Override
-    public Shared_Post_Adapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
+    public Shared_Post_Adapter_Old.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.pattern_shared_post, parent, false);
 
@@ -47,7 +47,7 @@ public class Shared_Post_Adapter extends RecyclerView.Adapter<Shared_Post_Adapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final Shared_Post_Adapter.MyViewHolder holder, final int i) {
+    public void onBindViewHolder(@NonNull final Shared_Post_Adapter_Old.MyViewHolder holder, final int i) {
 
 
         if (Records.get(i).getFlag().equals("Video")) {

@@ -1,15 +1,12 @@
 package com.rememberindia.shoppingportal.Activity;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
@@ -51,8 +48,6 @@ public class Product_List_Activity extends AppCompatActivity {
         setTitle("Shopping Mall");
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setRefreshing(true);
-
-
         recyclerView = findViewById(R.id.recycler_view_Product_List);
         Product_List_Display_API_Call();
         onRefresh();
@@ -132,9 +127,6 @@ public class Product_List_Activity extends AppCompatActivity {
 
     public void Product_List_Display_API_Call()
     {
-
-
-
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
 
@@ -142,7 +134,6 @@ public class Product_List_Activity extends AppCompatActivity {
         call.enqueue(new Callback<Product_List_Bean>() {
             @Override
             public void onResponse(Call<Product_List_Bean> call, Response<Product_List_Bean> response) {
-
                 if (response.body().getStatus() == 1)
                 {
                     Records = response.body().getData();
@@ -155,16 +146,11 @@ public class Product_List_Activity extends AppCompatActivity {
                 {
                     Toast.makeText(Product_List_Activity.this, response.body().getMessage() + "", Toast.LENGTH_SHORT).show();
                 }
-
-
             }
-
             @Override
             public void onFailure(Call<Product_List_Bean> call, Throwable t) {
-
             }
         });
-
     }
 
     private void onRefresh() {
