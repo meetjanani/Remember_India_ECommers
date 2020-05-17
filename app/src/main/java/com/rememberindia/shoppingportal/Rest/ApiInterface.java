@@ -84,7 +84,8 @@ public interface ApiInterface {
                                                     @Field("Address_1") String Address_1,
                                                     @Field("User_Name") String User_Name,
                                                     @Field("User_ID") String User_ID,
-                                                    @Field("URL_1") String URL_1);
+                                                    @Field("URL_1") String URL_1,
+                                                    @Field("comments") String comments);
 
     @FormUrlEncoded
     @POST("Shooping_Order.php")
@@ -133,4 +134,9 @@ public interface ApiInterface {
                                               @Field("receipt") String receipt);
 
 
+    @FormUrlEncoded
+    @POST("Shooping_Order.php")
+    Call<Common_Insert_Response_Bean> Change_Order_Status(@Field("methodname") String methodname,
+                                                          @Field("Order_Status") String Order_Status,
+                                                          @Field("Order_ID") String Order_ID);
 }

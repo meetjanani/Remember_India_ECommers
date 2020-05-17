@@ -50,7 +50,7 @@ public class Shared_Post_Adapter_New extends RecyclerView.Adapter<Shared_Post_Ad
         if (Records.get(i).getFlag().equals("YouTubeVideo")) {
             Picasso.with(context)
                     .load("https://img.youtube.com/vi/" + Records.get(i).getURL2() + "/0.jpg")
-                    .placeholder(R.drawable.ic_menu_gallery)
+                    .placeholder(R.mipmap.ic_launcher_foreground)
                     .resize(250, 250)
                     .centerCrop()
                     //.transform(transformation)
@@ -61,7 +61,7 @@ public class Shared_Post_Adapter_New extends RecyclerView.Adapter<Shared_Post_Ad
         } else if (Records.get(i).getFlag().equals("Video")) {
             Picasso.with(context)
                     .load("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT39_dYRRxsghk5Az0NYpSqE2f6oE9SGR-7dqcSqf-lOzHVo7tc")
-                    .placeholder(R.drawable.ic_menu_gallery)
+                    .placeholder(R.mipmap.ic_launcher_foreground)
                     .resize(250, 250)
                     .centerCrop()
                     //.transform(transformation)
@@ -75,7 +75,7 @@ public class Shared_Post_Adapter_New extends RecyclerView.Adapter<Shared_Post_Ad
         } else {
             Picasso.with(context)
                     .load(Records.get(i).getURL1() + "")
-                    .placeholder(R.drawable.ic_menu_gallery)
+                    .placeholder(R.mipmap.ic_launcher_foreground)
                     .resize(250, 250)
                     .centerCrop()
                     //.transform(transformation)

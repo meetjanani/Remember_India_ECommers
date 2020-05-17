@@ -79,6 +79,7 @@ public class Product_List_Activity extends AppCompatActivity {
                 Search_Filter_Data(s);
                 return false;
             }
+
         });
         return true;
     }
@@ -94,33 +95,11 @@ public class Product_List_Activity extends AppCompatActivity {
             Intent in = new Intent(Product_List_Activity.this , Cart_Activity.class);
             startActivity(in);
             return true;
-
         }
-//        if (id == R.id.search)
-//        {
-//            SearchManager searchManager = (SearchManager) Product_List_Activity.this.getSystemService(Context.SEARCH_SERVICE);
-//            //searchView = (SearchView)
-//            searchView.setSearchableInfo(searchManager.getSearchableInfo(Product_List_Activity.this.getComponentName()));
-//            searchView.setMaxWidth(Integer.MAX_VALUE);
-//
-//            // listening to search query text change
-//            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//                @Override
-//                public boolean onQueryTextSubmit(String query) {
-//                    // filter recycler view when query submitted
-//                    mAdapter.getFilter().filter(query);
-//                    return false;
-//                }
-//
-//                @Override
-//                public boolean onQueryTextChange(String query) {
-//                    // filter recycler view when text is changed
-//                    mAdapter.getFilter().filter(query);
-//                    return false;
-//                }
-//            });
-//        }
-
+                if (id == R.id.home) {
+                    onBackPressed();
+                    return true;
+                }
         return super.onOptionsItemSelected(item);
     }
 
@@ -191,5 +170,4 @@ public class Product_List_Activity extends AppCompatActivity {
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new GridLayoutManager((Product_List_Activity.this),2));
         }
-
 }

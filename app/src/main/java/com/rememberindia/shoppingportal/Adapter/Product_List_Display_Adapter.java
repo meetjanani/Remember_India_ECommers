@@ -2,9 +2,7 @@ package com.rememberindia.shoppingportal.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Paint;
-import android.service.autofill.Transformation;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,16 +14,14 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
 import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.rememberindia.shoppingportal.Activity.Product_Details_Activity;
 import com.rememberindia.shoppingportal.Bean.Product_Details_Bean;
 import com.rememberindia.shoppingportal.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import com.squareup.picasso.Picasso;
 
 
 public class Product_List_Display_Adapter extends RecyclerView.Adapter<Product_List_Display_Adapter.MyViewHolder> implements Filterable {
@@ -109,7 +105,7 @@ public class Product_List_Display_Adapter extends RecyclerView.Adapter<Product_L
 
         Picasso.with(context)
                 .load(product.getURL1())
-                .placeholder(R.drawable.rememberme_logo)
+                .placeholder(R.mipmap.ic_launcher_foreground)
                 .resize(250, 250)
                 .centerCrop()
                 .transform(transformation)

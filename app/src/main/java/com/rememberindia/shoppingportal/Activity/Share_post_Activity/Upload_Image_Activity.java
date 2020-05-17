@@ -163,7 +163,7 @@ public class Upload_Image_Activity extends AppCompatActivity {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
                     String path = saveImage(bitmap);
 
-                    Toast.makeText(Upload_Image_Activity.this, "Image Saved!" + path + " _", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(Upload_Image_Activity.this, "Image Saved!" + path + " _", Toast.LENGTH_SHORT).show();
                     imageview.setImageBitmap(bitmap);
                     P = path;
                     Toast.makeText(this, P  + "", Toast.LENGTH_SHORT).show();
@@ -174,6 +174,7 @@ public class Upload_Image_Activity extends AppCompatActivity {
                         // Get the path from the Uri
                         String path1 = getPathFromURI(selectedImageUri);
                         Log.i("IMG","PATH==>"+path1);
+                        Toast.makeText(this, path1  + "", Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (IOException e) {

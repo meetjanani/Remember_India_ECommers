@@ -137,7 +137,7 @@ public class Shared_Post_Adapter_Old extends RecyclerView.Adapter<Shared_Post_Ad
             holder.videoview.setVisibility(View.GONE);
             Picasso.with(context)
                     .load(Records.get(i).getURL1() + "")
-                    .placeholder(R.drawable.ic_menu_gallery)
+                    .placeholder(R.mipmap.ic_launcher_foreground)
                     .resize(250, 250)
                     .centerCrop()
                     //.transform(transformation)

@@ -3,9 +3,7 @@ package com.rememberindia.shoppingportal.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -19,12 +17,10 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.rememberindia.shoppingportal.Activity.Share_post_Activity.Upload_Image_Activity;
-import com.rememberindia.shoppingportal.Activity.Share_post_Activity.Upload_Video_Activity;
 import com.rememberindia.shoppingportal.Adapter.Shared_Post_Adapter_New;
 import com.rememberindia.shoppingportal.Bean.Shared_Post_Bean.Shared_Post_Details_Bean;
 import com.rememberindia.shoppingportal.Bean.Shared_Post_Bean.Shared_Post_List_Bean;
-import com.rememberindia.shoppingportal.Payment_Process.R_Pay_Activity;
+import com.rememberindia.shoppingportal.BuildConfig;
 import com.rememberindia.shoppingportal.R;
 import com.rememberindia.shoppingportal.Rest.ApiClient;
 import com.rememberindia.shoppingportal.Rest.ApiInterface;
@@ -59,15 +55,6 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Currently Active Offer Page Will Comming Soon... Stay Tuned With Us    ", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         LL_Past_Order = findViewById(R.id.LL_Past_Order);
         LL_Shooping_Mall = findViewById(R.id.LL_Shooping_Mall);
 
@@ -199,10 +186,11 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.nav_home) {
-            // Handle the camera action
-        } else if (id == R.id.nav_shoppingmall) {
+    //
+    //        if (id == R.id.nav_home) {
+    //            // Handle the camera action
+    //        }
+        if (id == R.id.nav_shoppingmall) {
             Intent in = new Intent(MainActivity.this, Product_List_Activity.class);
             startActivity(in);
         } else if (id == R.id.nav_cart) {
@@ -212,13 +200,15 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_pastorder) {
             Intent in = new Intent(MainActivity.this, Past_Order_Header_Data_Activity.class);
             startActivity(in);
-        } else if (id == R.id.nav_post_photo) {
-            Intent in = new Intent(MainActivity.this, Upload_Image_Activity.class);
-            startActivity(in);
-        } else if (id == R.id.nav_post_video) {
-            Intent in = new Intent(MainActivity.this, Upload_Video_Activity.class);
-            startActivity(in);
-        } else if (id == R.id.nav_my_profile) {
+        }
+//        else if (id == R.id.nav_post_photo) {
+//            Intent in = new Intent(MainActivity.this, Upload_Image_Activity.class);
+//            startActivity(in);
+//        } else if (id == R.id.nav_post_video) {
+//            Intent in = new Intent(MainActivity.this, Upload_Video_Activity.class);
+//            startActivity(in);
+//        }
+        else if (id == R.id.nav_my_profile) {
             Intent in = new Intent(MainActivity.this, My_Profile_Activity.class);
             startActivity(in);
         } else if (id == R.id.nav_logout) {
@@ -228,12 +218,16 @@ public class MainActivity extends AppCompatActivity
             Intent in = new Intent(MainActivity.this, Login_Activity.class);
             startActivity(in);
         } else if (id == R.id.nav_share) {
-            Intent in = new Intent(MainActivity.this, R_Pay_Activity.class);
-            startActivity(in);
-
-        } else if (id == R.id.nav_send) {
-
+            Intent share = new Intent(android.content.Intent.ACTION_SEND);
+            share.setType("text/plain");
+            share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+            share.putExtra(Intent.EXTRA_SUBJECT, "Android App For E-Commerce Shopping Portal");
+            share.putExtra(Intent.EXTRA_TEXT, "Link is here for Remember me india App :https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID +"\n\n");
+            startActivity(Intent.createChooser(share, "Share link!"));
         }
+//        else if (id == R.id.nav_send) {
+//
+//        }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

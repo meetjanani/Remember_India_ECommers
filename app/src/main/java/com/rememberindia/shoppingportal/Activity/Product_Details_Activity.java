@@ -298,7 +298,7 @@ public class Product_Details_Activity extends AppCompatActivity {
 
                     Picasso.with(Product_Details_Activity.this)
                             .load(Records.get(0).getURL1() + "")
-                            .placeholder(R.drawable.ic_menu_gallery)
+                            .placeholder(R.mipmap.ic_launcher_foreground)
                             .into(img_product_image);
 
                     img_product_image.setOnClickListener(new View.OnClickListener() {
@@ -320,8 +320,6 @@ public class Product_Details_Activity extends AppCompatActivity {
                     txt_product_quantity.setText(Integer.parseInt(Records.get(0).getMinQty()) + " "  + getString(R.string.txt_items));
 
                     //    if (product_status.equals("Available")) {
-                    btn_cart.setText(R.string.btn_add_to_cart);
-                    btn_cart.setBackgroundResource(R.color.available);
                     btn_cart.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {

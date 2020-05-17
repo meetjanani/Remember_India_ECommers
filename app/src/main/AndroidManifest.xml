@@ -19,15 +19,24 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup,icon,theme,label">
-        <activity android:name=".Activity.VideoViewActivity"></activity>
-        <activity android:name=".Payment_Process.R_Pay_Activity" />
-        <activity android:name=".Utility.My_Profile_Activity" />
-        <activity android:name=".Activity.Share_post_Activity.Upload_Video_Activity" />
-        <activity android:name=".Activity.Share_post_Activity.Upload_Image_Activity" />
-        <activity android:name=".Activity.Shared_Post_Activity" />
-        <activity android:name=".Activity.Past_Order_Product_Details_Activity" />
-        <activity android:name=".Activity.Past_Order_Header_Data_Activity" />
-        <activity android:name=".Activity.Product_List_Activity" />
+        <activity android:name=".Activity.VideoViewActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".Payment_Process.R_Pay_Activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Utility.My_Profile_Activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.Share_post_Activity.Upload_Video_Activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.Share_post_Activity.Upload_Image_Activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.Shared_Post_Activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.Past_Order_Product_Details_Activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.Past_Order_Header_Data_Activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.Product_List_Activity"
+            android:parentActivityName=".Activity.MainActivity"/>
         <activity
             android:name=".Activity.Checkout_Activity"
             android:screenOrientation="portrait"
@@ -43,7 +52,7 @@
         <activity
             android:name=".Activity.Product_Details_Activity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />

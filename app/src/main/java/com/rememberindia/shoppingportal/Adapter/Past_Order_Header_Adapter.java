@@ -8,14 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.rememberindia.shoppingportal.Activity.Past_Order_Product_Details_Activity;
 import com.rememberindia.shoppingportal.Bean.Past_Order_Header_Data.Past_Order_Header_Details_Bean;
-import com.rememberindia.shoppingportal.Bean.Product_Details_Bean;
 import com.rememberindia.shoppingportal.R;
 import com.squareup.picasso.Picasso;
 
@@ -106,7 +104,7 @@ public class Past_Order_Header_Adapter extends RecyclerView.Adapter<Past_Order_H
 
         Picasso.with(context)
                 .load(Records.get(i).getURL1() + "")
-                .placeholder(R.drawable.ic_menu_gallery)
+                .placeholder(R.mipmap.ic_launcher_foreground)
                 .resize(250, 250)
                 .centerCrop()
                 //.transform(transformation)

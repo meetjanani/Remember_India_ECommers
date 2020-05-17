@@ -91,7 +91,6 @@ public class Shared_Post_Activity extends AppCompatActivity {
         call.enqueue(new Callback<Shared_Post_List_Bean>() {
             @Override
             public void onResponse(Call<Shared_Post_List_Bean> call, Response<Shared_Post_List_Bean> response) {
-                // Toast.makeText(Past_Order_Header_Data_Activity.this, response.body().getMessage() + "", Toast.LENGTH_SHORT).show();
                 if (response.body().getStatus() == 1)
                 {
                     Records = response.body().getData();

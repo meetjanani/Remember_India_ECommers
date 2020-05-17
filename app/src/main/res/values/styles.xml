@@ -19,9 +19,9 @@
 
 
     <style name="LoginSignUp4Theme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/loginSignup4colorPrimary</item>
-        <item name="colorPrimaryDark">@color/loginSignup4colorPrimaryDark</item>
-        <item name="colorAccent">@color/loginSignup4colorAccent</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorPrimary</item>
     </style>
 
     <style name="LoginSignUp4TabLayout" parent="Widget.Design.TabLayout">
@@ -49,13 +49,7 @@
 
 
     <style name="ButtonOrange" parent="@android:style/Widget.Button">
-        <item name="android:background">@color/button_orange</item>
-    </style>
-
-
-
-    <style name="ButtonBlue" parent="@android:style/Widget.Button">
-        <item name="android:background">@color/button_blue</item>
+        <item name="android:background">@color/colorPrimary</item>
     </style>
 
 

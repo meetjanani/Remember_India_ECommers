@@ -1,20 +1,17 @@
 package com.rememberindia.shoppingportal.Activity;
 
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.rememberindia.shoppingportal.Adapter.Past_Order_Header_Adapter;
-import com.rememberindia.shoppingportal.Adapter.Product_List_Display_Adapter;
 import com.rememberindia.shoppingportal.Bean.Past_Order_Header_Data.Past_Order_Header_Details_Bean;
 import com.rememberindia.shoppingportal.Bean.Past_Order_Header_Data.Past_Order_Header_List_Bean;
 import com.rememberindia.shoppingportal.Bean.Product_Details_Bean;
-import com.rememberindia.shoppingportal.Bean.Product_List_Bean;
 import com.rememberindia.shoppingportal.R;
 import com.rememberindia.shoppingportal.Rest.ApiClient;
 import com.rememberindia.shoppingportal.Rest.ApiInterface;
@@ -34,6 +31,7 @@ public class Past_Order_Header_Data_Activity extends AppCompatActivity {
     List<Past_Order_Header_Details_Bean> Records;
     List<Product_Details_Bean> Filtered_Records ;
     Past_Order_Header_Adapter adapter;
+    View lyt_empty_history;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +44,7 @@ public class Past_Order_Header_Data_Activity extends AppCompatActivity {
 
 
         recyclerView = findViewById(R.id.recycler_view_PastOrder);
+        lyt_empty_history = findViewById(R.id.lyt_empty_history);
 
         Product_List_Display_API_Call();
 
@@ -53,9 +52,6 @@ public class Past_Order_Header_Data_Activity extends AppCompatActivity {
 
     public void Product_List_Display_API_Call()
     {
-
-
-
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
 
@@ -71,6 +67,10 @@ public class Past_Order_Header_Data_Activity extends AppCompatActivity {
                     adapter = new Past_Order_Header_Adapter(Past_Order_Header_Data_Activity.this, Records);
                     recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager((Past_Order_Header_Data_Activity.this)));
+
+                    if(Records.size() > 0){
+                        lyt_empty_history.setVisibility(View.GONE);
+                    }
                   //  SwipeRefresh_Past_Order.setRefreshing(false);
                 }
                 else

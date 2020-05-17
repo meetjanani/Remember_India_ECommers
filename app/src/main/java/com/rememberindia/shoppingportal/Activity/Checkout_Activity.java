@@ -347,7 +347,7 @@ public class Checkout_Activity extends AppCompatActivity implements PaymentResul
 //            edt_order_total.setText(_Total_price + " " + str_currency_code);
 //
 //        } else {
-        Common_Class.Order_Amount = (Order_price * 100 ) + "";
+        Common_Class.Order_Amount = (int)(Order_price * 100 );
             data_order_list += "\n" + getResources().getString(R.string.txt_order) + " " + Order_price + " INR"  +
                     "\n" + getResources().getString(R.string.txt_tax) + " " + str_tax + " % : " + tax + " INR"  +
                     "\n" + getResources().getString(R.string.txt_total) + " " + Total_price + " INR" ;
@@ -439,7 +439,8 @@ public class Checkout_Activity extends AppCompatActivity implements PaymentResul
                     edt_address.getText().toString() + "",
                     edt_name.getText().toString() + "",
                     Session_Manager.getUser_ID(Checkout_Activity.this),
-                    Records.get(i).getVarient_name());
+                    Records.get(i).getVarient_name(),
+                    edt_comment.getText().toString() + "");
             call.enqueue(new Callback<Common_Insert_Response_Bean>() {
                 @Override
                 public void onResponse(Call<Common_Insert_Response_Bean> call, Response<Common_Insert_Response_Bean> response) {
@@ -477,7 +478,7 @@ public class Checkout_Activity extends AppCompatActivity implements PaymentResul
 
         progress.dismiss();
         //finish();
-        dbhelper.deleteAll();
+
         //Fatch_All_Order();
         //Common_Class.total_amount = 0;
 
@@ -531,23 +532,19 @@ public class Checkout_Activity extends AppCompatActivity implements PaymentResul
 
     public void razorPayGenerateOrder()
     {
-
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
 //
         Call<R_Pay_Bean> call = apiService.Create_Order_OF_RazorPay(
                 "Generate_New_OrderID_Test",
-                Common_Class.Order_Amount+ "",
-                Common_Class.Order_ID + "");
+                Common_Class.Order_Amount + "",
+                Session_Manager.getName(Checkout_Activity.this) + " U-" + Session_Manager.getUser_ID(Checkout_Activity.this)   + " O-" + Common_Class.Order_ID);
         call.enqueue(new Callback<R_Pay_Bean>() {
             @Override
             public void onResponse(Call<R_Pay_Bean> call, Response<R_Pay_Bean> response) {
-
-
-                // Toast.makeText(R_Pay_Activity.this, response.body().getId() + "", Toast.LENGTH_SHORT).show();
-                startPayment( response.body().getId());
                 Common_Class.Payment_ID = response.body().getId();
-
+                Change_Payment_Id(Common_Class.Order_ID, Common_Class.Payment_ID);
+                startPayment(response.body().getId());
 
             }
 
@@ -557,8 +554,78 @@ public class Checkout_Activity extends AppCompatActivity implements PaymentResul
             }
         });
 
+
+//        ApiInterface apiService =
+//                ApiClient.getClient().create(ApiInterface.class);
+////
+//        Call<R_Pay_Bean> call = apiService.Create_Order_OF_RazorPay(
+//                "Generate_New_OrderID_Test",
+//                Common_Class.Order_Amount+ "",
+//                Common_Class.Order_ID + "");
+//        call.enqueue(new Callback<R_Pay_Bean>() {
+//            @Override
+//            public void onResponse(Call<R_Pay_Bean> call, Response<R_Pay_Bean> response) {
+//
+//
+//                // Toast.makeText(R_Pay_Activity.this, response.body().getId() + "", Toast.LENGTH_SHORT).show();
+//                Common_Class.Payment_ID = response.body().getId();
+//                Change_Payment_Id(Common_Class.Order_ID, Common_Class.Payment_ID);
+//                startPayment( response.body().getId());
+//
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<R_Pay_Bean> call, Throwable t) {
+//                Toast.makeText(Checkout_Activity.this, t.getMessage() + "", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
     }
 
+    public void Change_Payment_Id(String order_id, String PaymentOrderId) {
+        ApiInterface apiService =
+                ApiClient.getClient().create(ApiInterface.class);
+        Call<Common_Insert_Response_Bean> call = apiService.Change_Order_Status("Change_Payment_Id",
+                PaymentOrderId,
+                order_id);
+        call.enqueue(new Callback<Common_Insert_Response_Bean>() {
+            @Override
+            public void onResponse(Call<Common_Insert_Response_Bean> call, Response<Common_Insert_Response_Bean> response) {
+
+                if (response.body().getStatus() == 1) {
+                    // Toast.makeText(context, response.body().getMessage() + "", Toast.LENGTH_SHORT).show();
+                } else {
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Common_Insert_Response_Bean> call, Throwable t) {
+            }
+        });
+    }
+
+    public void Change_Payment_Status(String order_id, String PaymentStatus) {
+        ApiInterface apiService =
+                ApiClient.getClient().create(ApiInterface.class);
+        Call<Common_Insert_Response_Bean> call = apiService.Change_Order_Status("Change_Payment_Status",
+                PaymentStatus,
+                order_id);
+        call.enqueue(new Callback<Common_Insert_Response_Bean>() {
+            @Override
+            public void onResponse(Call<Common_Insert_Response_Bean> call, Response<Common_Insert_Response_Bean> response) {
+
+                if (response.body().getStatus() == 1) {
+                    // Toast.makeText(context, response.body().getMessage() + "", Toast.LENGTH_SHORT).show();
+                } else {
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Common_Insert_Response_Bean> call, Throwable t) {
+            }
+        });
+    }
 
     public void startPayment(String order_id) {
         /**
@@ -619,6 +686,8 @@ public class Checkout_Activity extends AppCompatActivity implements PaymentResul
 
     @Override
     public void onPaymentSuccess(String s) {
+        dbhelper.deleteAll();
+        Change_Payment_Status(Common_Class.Order_ID, "Success");
         Common_Class.Order_ID = null;
         Toast.makeText(this, s+ "", Toast.LENGTH_SHORT).show();
         finish();
@@ -626,6 +695,7 @@ public class Checkout_Activity extends AppCompatActivity implements PaymentResul
 
     @Override
     public void onPaymentError(int i, String s) {
+        Change_Payment_Status(Common_Class.Order_ID, "Failed");
         Common_Class.Order_ID = null;
     }
 }

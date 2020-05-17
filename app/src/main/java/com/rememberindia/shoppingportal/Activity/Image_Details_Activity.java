@@ -11,13 +11,13 @@ import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.Settings;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -61,7 +61,7 @@ public class Image_Details_Activity extends AppCompatActivity {
 
         Picasso.with(this)
                 .load(str_image)
-                .placeholder(R.drawable.ic_menu_gallery)
+                .placeholder(R.mipmap.ic_launcher_foreground)
                 .into(product_image);
 
         initToolbar();
