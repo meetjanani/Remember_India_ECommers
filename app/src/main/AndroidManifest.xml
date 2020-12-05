@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.rememberindia.shoppingportal">
+    package="com.rememberindia.remember4u">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -9,6 +9,15 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission
+        android:name="android.permission.READ_SMS"
+        tools:node="remove" />
+    <uses-permission
+        android:name="android.permission.SEND_SMS"
+        tools:node="remove" />
+    <uses-permission
+        android:name="android.permission.RECEIVE_SMS"
+        tools:node="remove" />
 
     <application
         android:allowBackup="true"
@@ -18,25 +27,46 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:replace="android:allowBackup,icon,theme,label">
-        <activity android:name=".Activity.VideoViewActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".Payment_Process.R_Pay_Activity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Utility.My_Profile_Activity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activity.Share_post_Activity.Upload_Video_Activity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activity.Share_post_Activity.Upload_Image_Activity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activity.Shared_Post_Activity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activity.Past_Order_Product_Details_Activity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activity.Past_Order_Header_Data_Activity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activity.Product_List_Activity"
-            android:parentActivityName=".Activity.MainActivity"/>
+        tools:replace="android:allowBackup,icon,theme,label,android:usesCleartextTraffic">
+        <activity android:name=".Activity.ArticlesActivity"></activity>
+        <activity android:name=".Activity.Share_post_Activity.Multi_Media_Activity" />
+        <activity
+            android:name=".Activity.product.Category_Wise_Product_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.about_us.About_US_1_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Share_post_Activity.PDFView_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.VideoViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Payment_Process.R_Pay_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Utility.My_Profile_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Share_post_Activity.Upload_Video_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Share_post_Activity.Upload_Image_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Shared_Post_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Past_Order_Product_Details_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Past_Order_Header_Data_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Product_List_Activity"
+            android:parentActivityName=".Activity.MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.Checkout_Activity"
             android:screenOrientation="portrait"
@@ -52,12 +82,14 @@
         <activity
             android:name=".Activity.Product_Details_Activity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.Login_Activity"
+            android:screenOrientation="portrait"
             android:theme="@style/LoginSignUp4Theme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -68,7 +100,7 @@
 
         <meta-data
             android:name="com.razorpay.ApiKey"
-            android:value="rzp_test_G5j7j1de5hNnmb" />
+            android:value="rzp_live_1KI6M7KVwrnm0F" />
     </application>
 
 </manifest>

@@ -6,7 +6,7 @@
     android:background="@color/black"
     android:fitsSystemWindows="false">
 
-    <com.rememberindia.shoppingportal.Utility.TouchImageView
+    <com.rememberindia.remember4u.Utility.TouchImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -39,8 +39,7 @@
             android:layout_height="wrap_content"
             android:background="@color/transparent"
             android:text="@string/btn_continue_shopping"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:textColor="@color/white" />
 
     </com.balysv.materialripple.MaterialRippleLayout>
 

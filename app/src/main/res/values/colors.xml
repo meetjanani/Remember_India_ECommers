@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#835892</color>
-    <color name="colorPrimaryDark">#835892</color>
+    <color name="colorPrimary">#00CED1</color>
+    <color name="colorPrimaryDark">#00CED1</color>
     <color name="colorAccent">#D81B60</color>
 
 <!--// Pattern Product-->
@@ -15,4 +15,5 @@
     <color name="hint">#767676</color>
     <color name="available">#ef6c00</color>
     <color name="sold">#767676</color>
+    <color name="blue_color">#3B5998</color>
 </resources>

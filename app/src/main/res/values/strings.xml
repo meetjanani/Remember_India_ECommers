@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Shopping Portal</string>
+    <string name="app_name">Remember 4U</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -58,6 +58,7 @@
     <string name="checkout_phone_number">Phone Number</string>
     <string name="checkout_order_list">Order Detail</string>
     <string name="checkout_add_comment">Comment</string>
+    <string name="pincode_label">Pinncode</string>
     <string name="no_order_menu">No order</string>
     <string name="txt_order">Order :</string>
     <string name="txt_tax">Tax :</string>
@@ -107,6 +108,7 @@
     <string name="dialog_settings">GOTO SETTINGS</string>
     <string name="msg_exit">Press again to exit app</string>
     <string name="txt_items">item(s)</string>
+    <string name="txt_qty">Qty</string>
     <string name="title_img_save">Save</string>
     <string name="title_img_close">Close</string>
     <string name="msg_copy">Purchase code copied</string>
@@ -117,6 +119,17 @@
     <string name="txt_profile_privacy">Privacy Policy</string>
     <string name="txt_total_order">Total Order</string>
     <string name="txt_profile_share">Share</string>
+    <string name="html"><pre> Hello Dark " +
+                "" +
+                "L2" +
+                "</pre> Light</string>
+
+    <string name="nice_html">\u0020 \u0020
+<![CDATA[
+<p>This is another paragraph of the same string.</p>
+<p>This is a html-formatted string with <b>bold</b> and <i>italic</i> text</p>
+]]>
+</string>
 
 
 </resources>

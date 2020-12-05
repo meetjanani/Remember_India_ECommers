@@ -151,6 +151,26 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/edt_pincode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:enabled="false"
+                    android:hint="@string/pincode_label"
+                    android:inputType="textCapWords"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:singleLine="true">
+
+                </EditText>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
                     android:id="@+id/edt_comment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -192,8 +212,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/transparent"
                 android:text="@string/btn_process_checkout"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
+                android:textColor="@color/white" />
 
         </com.balysv.materialripple.MaterialRippleLayout>
 

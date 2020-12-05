@@ -65,6 +65,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:orientation="horizontal">
 
         <EditText
@@ -148,6 +149,11 @@
             style="@style/LoginSignUp4Input"
             android:hint="Full Address"
             android:inputType="textMultiLine"/>
+        <EditText
+            android:id="@+id/ET_Pincode"
+            style="@style/LoginSignUp4Input"
+            android:hint="Pincode"
+            android:inputType="textMultiLine"/>
         <Button
             android:id="@+id/btnCreateAccount"
             style="@style/ButtonOrange"
@@ -181,8 +187,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClick"
-                android:text="Term of Services"
-                android:textStyle="bold" />
+                android:text="Term of Services" />
 
         </LinearLayout>
 
